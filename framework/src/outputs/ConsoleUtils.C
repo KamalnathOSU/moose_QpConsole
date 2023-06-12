@@ -66,7 +66,7 @@ outputQuadratureInformation(FEProblemBase & problem, bool verbose)
 	}//end of for loop
     oss
 	<<std::setw(console_field_width)
-	<<"Max Qrule per Elem:" << problem.getMaxQps() << std::endl;
+	<<"Max N_Qp per Elem:" << problem.getMaxQps() << std::endl;
 	
   }//end of if-verbose
 
