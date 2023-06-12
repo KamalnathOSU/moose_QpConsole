@@ -477,6 +477,7 @@ FEProblemBase::FEProblemBase(const InputParameters & parameters)
   if (!_app.isUltimateMaster())
     PetscOptionsCreate(&_petsc_option_data_base);
 #endif
+
 }
 
 const MooseMesh &
@@ -5334,7 +5335,23 @@ FEProblemBase::createQRules(QuadratureType type,
         type, order, volume_order, face_order, block, allow_negative_qweights);
 
   updateMaxQps();
-}
+
+  //Header info update
+  if(block == Moose::ANY_BLOCK_ID)
+  {
+	auto Qtype = Moose::stringify(type);
+	auto Qorder = std::to_string(volume_order);
+	
+	_quadrature_header_info.push_back( std::make_pair("  Default Qtype:",Qtype) );
+	_quadrature_header_info.push_back( std::make_pair("  Default Qorder:",Qorder) );
+  }
+  else
+  {
+	auto block_id = std::to_string(block);
+	auto block_order = std::to_string(volume_order);
+	_quadrature_header_info.push_back( std::make_pair("  Block"+block_id+" Qorder:",block_order) );
+  }
+}//end of createQRule(*)
 
 void
 FEProblemBase::setCoupling(Moose::CouplingType type)

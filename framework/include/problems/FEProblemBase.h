@@ -315,6 +315,8 @@ public:
   virtual void setActiveScalarVariableCoupleableMatrixTags(std::set<TagID> & mtags,
                                                            THREAD_ID tid) override;
 
+  
+  std::vector<std::pair<std::string,std::string>> _quadrature_header_info;
   virtual void createQRules(QuadratureType type,
                             Order order,
                             Order volume_order = INVALID_ORDER,

@@ -114,8 +114,8 @@ Console::validParams()
                                      "the average residual it is colored yellow.");
 
   // System information controls
-  MultiMooseEnum info("framework mesh aux nonlinear relationship execution output",
-                      "framework mesh aux nonlinear execution");
+  MultiMooseEnum info("framework mesh aux nonlinear relationship execution output quadrature",
+                      "framework mesh aux nonlinear execution quadrature");
   params.addParam<MultiMooseEnum>("system_info",
                                   info,
                                   "List of information types to display "
@@ -637,6 +637,14 @@ Console::outputSystemInformation()
       _console << "Nonlinear System:\n" << output;
   }
 
+  if (_system_info_flags.contains("quadrature"))
+  {
+    std::string output = ConsoleUtils::outputQuadratureInformation(*_problem_ptr) ;
+    if( !output.empty() )
+      _console << "Quadrature Information:\n" << output <<"\n"; 
+  }
+    
+
   if (_system_info_flags.contains("aux"))
   {
     std::string output = ConsoleUtils::outputAuxiliarySystemInformation(*_problem_ptr);
@@ -656,6 +664,7 @@ Console::outputSystemInformation()
 
   if (_system_info_flags.contains("output"))
     _console << ConsoleUtils::outputOutputInformation(_app);
+
 
   // Output the legacy flags, these cannot be turned off so they become annoying to people.
   _console << ConsoleUtils::outputLegacyInformation(_app);

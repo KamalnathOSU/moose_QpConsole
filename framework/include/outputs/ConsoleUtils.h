@@ -27,7 +27,7 @@ namespace ConsoleUtils
 {
 
 /// Width used for printing simulation information
-static const unsigned int console_field_width = 27;
+static const unsigned int console_field_width = 35;
 
 /// Line length for printing simulation information
 static const unsigned int console_line_length = 100;
@@ -48,6 +48,11 @@ std::string outputFrameworkInformation(const MooseApp & app);
  * Output the mesh information
  */
 std::string outputMeshInformation(FEProblemBase & problem, bool verbose = true);
+
+/**
+ * Output the quadrature information
+ */
+std::string outputQuadratureInformation( FEProblemBase & problem, bool verbose = true);
 
 /**
  * Output the Auxiliary system information

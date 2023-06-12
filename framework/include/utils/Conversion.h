@@ -100,6 +100,9 @@ stringify(unsigned long long v)
 /// Convert solve type into human readable string
 std::string stringify(const SolveType & t);
 
+/// Convert quadrature type into human readable string
+std::string stringify(const QuadratureType & t);
+
 /// Convert eigen solve type into human readable string
 std::string stringify(const EigenSolveType & t);
 

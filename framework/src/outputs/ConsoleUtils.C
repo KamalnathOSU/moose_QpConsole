@@ -52,6 +52,28 @@ outputFrameworkInformation(const MooseApp & app)
 }
 
 std::string
+outputQuadratureInformation(FEProblemBase & problem, bool verbose)
+{
+  std::stringstream oss;
+  oss << std::left;
+  if (verbose)
+  {
+	for(auto & header : problem._quadrature_header_info)
+	{
+    	oss
+		<<std::setw(console_field_width)
+		<<header.first << header.second << std::endl;
+	}//end of for loop
+    oss
+	<<std::setw(console_field_width)
+	<<"Max Qrule per Elem:" << problem.getMaxQps() << std::endl;
+	
+  }//end of if-verbose
+
+  return oss.str();
+}
+
+std::string
 outputMeshInformation(FEProblemBase & problem, bool verbose)
 {
   std::stringstream oss;

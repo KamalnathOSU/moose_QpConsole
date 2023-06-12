@@ -442,6 +442,33 @@ stringify(const SolveType & t)
 }
 
 std::string
+stringify(const QuadratureType & t)
+{
+  switch(t)
+  {
+	case QCLOUGH:
+		return "CLOUGH";
+	case QCONICAL:
+		return "CONICAL";
+	case QGAUSS:
+		return "GAUSS";
+	case QGRID:
+		return "GRID";
+	case QMONOMIAL:
+		return "MONOMIAL";
+	case QSIMPSON:
+		return "SIMPSON";
+	case QTRAP:
+		return "TRAP";
+	case QGAUSS_LOBATTO:
+		return "GAUSS_LOBATTO";
+	default:
+		return "INVALID_Q_RULE"; // Hopefully, program never reaches here
+  }
+  return "";
+}//end of stringify(const QuadratureType & t)
+
+std::string
 stringify(const EigenSolveType & t)
 {
   switch (t)
